@@ -1,0 +1,63 @@
+{
+  "Frequencies": [
+    0.0078125
+  ],
+  "Transferfunctions": {
+    "Z": {
+      "Components": [
+        "xx",
+        "xy",
+        "yx",
+        "yy"
+      ],
+      "ValueType": "complex"
+    }
+  },
+  "InputFiles": [
+"BEAR97_B01.tf.json",
+"BEAR97_B02.tf.json",
+"BEAR97_B05.tf.json",
+"BEAR97_B07.tf.json",
+"BEAR97_B08.tf.json",
+"BEAR97_B09.tf.json",
+"BEAR97_B10.tf.json",
+"BEAR97_B11.tf.json",
+"BEAR97_B12.tf.json",
+"BEAR97_B13.tf.json",
+"BEAR97_B14.tf.json",
+"BEAR97_B15.tf.json",
+"BEAR97_B16.tf.json",
+"BEAR97_B17.tf.json",
+"BEAR97_B18.tf.json",
+"BEAR97_B19.tf.json",
+"BEAR97_B20.tf.json",
+"BEAR97_B21.tf.json",
+"BEAR97_B22.tf.json",
+"BEAR97_B23.tf.json",
+"BEAR97_B24.tf.json",
+"BEAR97_B25.tf.json",
+"BEAR97_B26.tf.json",
+"BEAR97_B27.tf.json",
+"BEAR97_B28.tf.json",
+"BEAR97_B29.tf.json",
+"BEAR97_B30.tf.json",
+"BEAR97_B31.tf.json",
+"BEAR97_B32.tf.json",
+"BEAR97_B33.tf.json",
+"BEAR97_B34.tf.json",
+"BEAR97_B35.tf.json",
+"BEAR97_B36.tf.json",
+"BEAR97_B37.tf.json",
+"BEAR97_B38.tf.json",
+"BEAR97_B39.tf.json",
+"BEAR97_B40.tf.json",
+"BEAR97_B41.tf.json",
+"BEAR97_B42.tf.json",
+"BEAR97_B44.tf.json",
+"BEAR97_B45.tf.json",
+"BEAR97_B46.tf.json",
+"BEAR97_B47.tf.json",
+"BEAR97_B48.tf.json",
+"BEAR97_B49.tf.json"
+  ]
+}

@@ -1,34 +1,12 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-'''
-@Author: Maxim Yu. Smirnov, Maria Smirnova
-@Institute: Luleå University of Technology
-@Copyright:  (C) 2021
-@Date: 2021-04-01 12:00:00
-@LastEditTime : 2021-04-01 12:00:00
-@LastEditors  : Maxim Yu. Smirnov, Maria Smirnova
-@Description:
-
-==================================================
-Multi-Resolution 3-Dimensional Modelling (MR3DMod)
-==================================================
-The code is licensed under
-the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
-To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/
-
-@FilePath:
-   
-'''
 import os, sys
-#sys.path.append(os.path.dirname(os.environ["MR3DMOD_PATH"]))
-
 import matplotlib.pyplot as plt
 import numpy as np
 import json
 
 
-#infile = 'test.json'
 infile = sys.argv[1]
 
 with open(infile, 'r') as json_file:  
