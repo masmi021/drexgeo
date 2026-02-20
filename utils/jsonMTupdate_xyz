@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Written by Maxim Smirnov, Lulea University of Technology (c) 2018
+# Modify header keyword in all JSON MT files in selected directory
+#
+# jsonMTupdate ./ Project BEAR
+
+
+if [ ! -f $1 ]  
+  then echo 'jsonMTupdate_xyz  coordinates '; exit 0
+fi
+
+for json in `ls *.json`
+do
+  sitename=$(jq -r '.Header.Site.Name' $json)
+  echo "Processing..."  $json  $sitename 
+  #read coordinates of the first site on the profile
+  X=$(awk -v sitename=$sitename '{ if ( $3 == sitename ) {print $1; exit} }' $1)
+  Y=$(awk -v sitename=$sitename '{ if ( $3 == sitename ) {print $2; exit} }' $1)
+  echo 'Coordinates found: ' $sitename "X:"$X  "Y:"$Y
+  
+  if [ -z "$X" ] || [ -z "$Y" ];
+  then
+    echo "No coordintes found for:" $sitename
+  else
+    jq --argjson X $X   '.AuxHeader.Location.X = $X'  $json | jq --argjson Y $Y '.AuxHeader.Location.Y = $Y' | jq --argjson X $X '.Channels.Bx.Location.X = $X'  | jq --argjson Y $Y '.Channels.Bx.Location.Y = $Y' | jq --argjson X $X '.Channels.By.Location.X = $X'  | jq --argjson Y $Y '.Channels.By.Location.Y = $Y' | jq --argjson X $X '.Channels.Bz.Location.X = $X'  | jq --argjson Y $Y '.Channels.Bz.Location.Y = $Y' | jq --argjson X $X '.Channels.Ex.Location.X = $X'  | jq --argjson Y $Y '.Channels.Ex.Location.Y = $Y' | jq --argjson X $X '.Channels.Ey.Location.X = $X'  | jq --argjson Y $Y '.Channels.Ey.Location.Y = $Y' | jq  '.Channels.Bx.Location.Z = 0.0' | jq  '.Channels.By.Location.Z = 0.0' | jq  '.Channels.Bz.Location.Z = 0.0' | jq  '.Channels.Ex.Location.Z = 0.0'  | jq  '.Channels.Ey.Location.Z = 0.0' > $json.tmp
+    mv $json.tmp $json
+  fi
+done

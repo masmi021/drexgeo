@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Written by Maxim Smirnov, Lulea University of Technology (c) 2018
+# Modify header keyword in all JSON MT files in selected directory
+#
+# jsonMYupdate ./ Project BEAR
+
+
+if [  -f $1 ];  then echo 'usage: jsonMTupdate dir Keyword NewValue '; exit 0
+fi
+
+for json in `ls $1*.json`
+do
+
+  out=`basename $json .tf.json`
+  jq -j '.Header.Location.Latitude," ", .Header.Location.Longitude' $json
+  echo " $out"
+done

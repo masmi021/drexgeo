@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Written by Maxim Smirnov, Lulea University of Technology (c) 2018
+# Modify header keyword in all JSON MT files in selected directory
+#
+# jsonMYupdate ./ Project BEAR
+
+
+for json in `ls $1*.json`
+do
+  sitename=$(basename $json .json)
+  sitename="${sitename%.*}" # this is needed if there are several dots in extension like tf.json
+  sitename="${sitename%.*}" # this is needed if there are several dots in extension like tf.json
+  #sitename="${sitename: 0:8}" # this is to extract part of the filename as site name
+  echo $sitename
+  echo $json $sitename
+  jq  --arg name $sitename '.Header.Site.Name = $name' $json > $json.tmp
+  mv $json.tmp $json
+done

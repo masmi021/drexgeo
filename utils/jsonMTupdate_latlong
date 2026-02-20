@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Written by Maxim Smirnov, Lulea University of Technology (c) 2018
+# Modify header keyword in all JSON MT files in selected directory
+#
+# jsonMTupdate ./ Project BEAR
+
+
+if [ ! -f $1 ]  
+  then echo 'jsonMTupdate_coord  coordinates '; exit 0
+fi
+
+for json in `ls *.json`
+do
+  sitename=$(jq -r '.Header.Site.Name' $json)
+  echo "Processing..."  $json  $sitename 
+  #read coordinates of the first site on the profile
+  lat0=$(awk  -v sitename=$sitename '{ if ( $3 == sitename ) {print $1; exit} }' $1)
+  long0=$(awk -v sitename=$sitename '{ if ( $3 == sitename ) {print $2; exit} }' $1)
+  echo 'Coordinates found: ' $sitename $lat0 $long0
+  
+  if [ -z "$lat0" ] || [ -z "$long0" ];
+  then
+    echo "No coordintes found for:" $sitename
+  else
+    jq --argjson lat $lat0   '.Header.Location.Latitude = $lat'  $json | jq --argjson long $long0 '.Header.Location.Longitude = $long'  > $json.tmp
+    mv $json.tmp $json
+  fi
+done
